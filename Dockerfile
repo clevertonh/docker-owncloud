@@ -1,4 +1,4 @@
-FROM dinkel/nginx-phpfpm
+FROM dinkel/nginx-phpfpm:1.6.2_5.4.36
 
 MAINTAINER Christian Luginbühl <dinke@pimprecords.com>
 
