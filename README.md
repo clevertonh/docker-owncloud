@@ -27,12 +27,12 @@ To get the full potential this image offers, one should first create a data-only
 container (see "Data persistence" below), and start a database daemon (which
 itself should have a data-only container) and a ClamAV daemon:
 
-    docker run -d -name owncloud-postgres --volumes-from your-dbdata-container postgres
-    docker run -d -name clamavd dinkel/clamavd
+    docker run -d --name owncloud-postgres --volumes-from your-dbdata-container postgres
+    docker run -d --name clamavd dinkel/clamavd
 
 The run this image
 
-    docker run -d -name owncloud --volumes-from your-data-container --link owncloud-postgres:owncloud-postgres --link clamavd:clamavd dinkel/owncloud
+    docker run -d --name owncloud -p 80:80 --volumes-from your-data-container --link owncloud-postgres:owncloud-postgres --link clamavd:clamavd dinkel/owncloud
 
 Upon first launch, one has to configure ownCloud appropriately. See ownClouds
 own documentation for details. Note that the hostnames of linked functionality
