@@ -8,7 +8,6 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
         libav-tools \
         bzip2 \
-        ca-certificates \
         curl \
 #        libreoffice \
         php-apc \
