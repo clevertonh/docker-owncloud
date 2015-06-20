@@ -2,7 +2,7 @@ FROM dinkel/nginx-phpfpm:8.1
 
 MAINTAINER Christian Luginbühl <dinke@pimprecords.com>
 
-ENV OWNCLOUD_VERSION 8.0.3
+ENV OWNCLOUD_VERSION 8.0.4
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
