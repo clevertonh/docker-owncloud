@@ -1,6 +1,6 @@
-FROM dinkel/nginx-phpfpm:8.1
+FROM dinkel/nginx-phpfpm:8.2
 
-MAINTAINER Christian Luginbühl <dinke@pimprecords.com>
+MAINTAINER Christian Luginbühl <dinkel@pimprecords.com>
 
 ENV OWNCLOUD_VERSION 8.0.5
 
