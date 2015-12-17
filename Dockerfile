@@ -2,7 +2,7 @@ FROM dinkel/nginx-phpfpm:8.2
 
 MAINTAINER Christian Luginbühl <dinkel@pimprecords.com>
 
-ENV OWNCLOUD_VERSION 8.0.5
+ENV OWNCLOUD_VERSION 8.1.4
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -28,16 +28,15 @@ RUN apt-get update && \
 RUN curl https://download.owncloud.org/community/owncloud-$OWNCLOUD_VERSION.tar.bz2 | tar jx -C /var/ && \
     mv /var/owncloud/ /var/www/
 
-RUN curl https://apps.owncloud.com/CONTENT/content-files/157439-files_antivirus.tar.gz | tar zx -C /var/www/apps
-
 RUN mv /var/www/apps /var/www/apps.dist && \
-    mkdir -p /var/www/apps /var/www/data && \
+    mv /var/www/config /var/www/config.dist && \
+    mkdir -p /var/www/apps /var/www/config /var/www/data && \
     chown -R www-data:www-data /var/www/apps /var/www/config /var/www/data && \
     find /var/www/apps.dist -type d -exec chmod 755 {} \; && \
-    find /var/www/config -type d -exec chmod 755 {} \; && \
+    find /var/www/config.dist -type d -exec chmod 755 {} \; && \
     find /var/www/data -type d -exec chmod 755 {} \; && \
     find /var/www/apps.dist -type f -exec chmod 644 {} \; && \
-    find /var/www/config -type f -exec chmod 644 {} \; && \
+    find /var/www/config.dist -type f -exec chmod 644 {} \; && \
     find /var/www/data -type f -exec chmod 644 {} \;
 
 COPY default.conf /etc/nginx/conf.d/

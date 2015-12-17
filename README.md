@@ -52,3 +52,19 @@ holds the configured apps, one with configuration options and the last one
 with the files that are being saved in ownCloud. Please make sure that these
 directories are saved (in a data-only container or alike) in order to make sure
 that everything is restored after a new restart of the application.
+
+Update
+------
+
+### Form 8.0.x to 8.1.x
+
+As the Antivirus app is now considered official, one has to eanble it through
+the normal Apps system. To have it work flawlessly, one needs to delete the
+`oc_files_antivirus` table before upgrading. Also I had to reconfigure the app
+to make it delete the files in the Admin section and also I needed to reset the
+rules in the advanced tab. Definitely make sure to test everything with an EICAR
+file.
+
+In my case (while testing the build) it was quite annoying to update all apps,
+but with a little bit of patience and a combination of updating, uninstalling
+and installing apps one a the time, it worked for me.
