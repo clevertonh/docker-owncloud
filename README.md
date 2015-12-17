@@ -46,19 +46,9 @@ None at the moment.
 Data persistence
 ----------------
 
-The image exposes two directories
-(`VOLUME ["/var/www/config", "/var/www/data"]`) - one with configuration options
-and one with the files that are being saved in ownCloud. Please make sure that
-these directories are saved (in a data-only container or alike) in order to make
-sure that everything is restored after a new restart of the application.
-
-Todo
-----
-
-* Installing additional ownCloud apps (plugins) are written inside the container
-  and not reflected to the outside world (a.k.a. a data container), because in
-  `/var/www/apps` there are already the default apps installed. There is a
-  possibility to make a second app directory (see "Apps configuration" in the
-  ownCloud Administrators Manual), but within Docker this would require to put
-  stuff in `/var/www/config/config.php` from within the `bootstrap.sh` script,
-  which could be quite tricky.
+The image exposes threee directories
+(`VOLUME ["/var/www/apps", "/var/www/config", "/var/www/data"]`) - one that
+holds the configured apps, one with configuration options and the last one
+with the files that are being saved in ownCloud. Please make sure that these
+directories are saved (in a data-only container or alike) in order to make sure
+that everything is restored after a new restart of the application.

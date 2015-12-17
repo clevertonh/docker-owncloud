@@ -28,16 +28,13 @@ RUN apt-get update && \
 RUN curl https://download.owncloud.org/community/owncloud-$OWNCLOUD_VERSION.tar.bz2 | tar jx -C /var/ && \
     mv /var/owncloud/ /var/www/
 
-RUN curl https://apps.owncloud.com/CONTENT/content-files/157439-files_antivirus.tar.gz | tar zx -C /var/www/apps
-
-RUN mkdir -p /var/www/assets /var/www/data && \
-    chown -R www-data:www-data /var/www/apps /var/www/assets /var/www/config /var/www/data && \
-    find /var/www/apps -type d -exec chmod 755 {} \; && \
-    find /var/www/assets -type d -exec chmod 755 {} \; && \
+RUN mv /var/www/apps /var/www/apps.dist && \
+    mkdir -p /var/www/apps /var/www/data && \
+    chown -R www-data:www-data /var/www/apps /var/www/config /var/www/data && \
+    find /var/www/apps.dist -type d -exec chmod 755 {} \; && \
     find /var/www/config -type d -exec chmod 755 {} \; && \
     find /var/www/data -type d -exec chmod 755 {} \; && \
-    find /var/www/apps -type f -exec chmod 644 {} \; && \
-    find /var/www/assets -type f -exec chmod 644 {} \; && \
+    find /var/www/apps.dist -type f -exec chmod 644 {} \; && \
     find /var/www/config -type f -exec chmod 644 {} \; && \
     find /var/www/data -type f -exec chmod 644 {} \;
 
@@ -49,7 +46,7 @@ COPY bootstrap.sh /
 
 ENTRYPOINT ["/bootstrap.sh"]
 
-VOLUME ["/var/www/config", "/var/www/data"]
+VOLUME ["/var/www/apps", "/var/www/config", "/var/www/data"]
 
 # This script comes from the parent image
 CMD ["/run.sh"]
