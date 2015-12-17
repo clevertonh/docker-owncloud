@@ -56,7 +56,7 @@ that everything is restored after a new restart of the application.
 Update
 ------
 
-### Form 8.0.x to 8.1.x
+### From 8.0.x to 8.1.x
 
 As the Antivirus app is now considered official, one has to eanble it through
 the normal Apps system. To have it work flawlessly, one needs to delete the
