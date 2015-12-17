@@ -28,6 +28,8 @@ RUN apt-get update && \
 RUN curl https://download.owncloud.org/community/owncloud-$OWNCLOUD_VERSION.tar.bz2 | tar jx -C /var/ && \
     mv /var/owncloud/ /var/www/
 
+RUN curl https://apps.owncloud.com/CONTENT/content-files/157439-files_antivirus.tar.gz | tar zx -C /var/www/apps
+
 RUN mv /var/www/apps /var/www/apps.dist && \
     mkdir -p /var/www/apps /var/www/data && \
     chown -R www-data:www-data /var/www/apps /var/www/config /var/www/data && \
