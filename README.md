@@ -68,3 +68,14 @@ file.
 In my case (while testing the build) it was quite annoying to update all apps,
 but with a little bit of patience and a combination of updating, uninstalling
 and installing apps one a the time, it worked for me.
+
+### From 8.1.x to 8.2.x
+
+As the Antivirus app has been removed from 'official' again and therefore is not
+not installed by default anymore. At the moment there is no official build in
+`https://apps.owncloud.org` neither, so it is included in the container
+explicitely. No special attention should be needed, just make sure you
+thoroughly check the functionality.
+
+The file `ca_bundle.crt` has moved outside of the `config/` directory (again)
+and now can safely be deleted here.
