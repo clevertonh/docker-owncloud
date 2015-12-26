@@ -2,9 +2,9 @@ FROM dinkel/nginx-phpfpm:8.2
 
 MAINTAINER Christian Luginbühl <dinkel@pimprecords.com>
 
-ENV OWNCLOUD_VERSION 8.2.1
+ENV OWNCLOUD_VERSION 8.2.2
 
-ENV OWNCLOUD_APP_ANTIVIRUS_VERSION 8.2.1
+ENV OWNCLOUD_APP_ANTIVIRUS_VERSION 8.2.2
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -12,7 +12,7 @@ RUN apt-get update && \
         bzip2 \
         curl \
 #        libreoffice \
-        php-apc \
+        php5-apcu \
         php5-curl \
         php5-gd \
         php5-imagick \
@@ -37,12 +37,14 @@ RUN mv /var/www/apps /var/www/apps.dist && \
     mv /var/www/config /var/www/config.dist && \
     mkdir -p /var/www/apps /var/www/config /var/www/data && \
     chown -R www-data:www-data /var/www/apps /var/www/config /var/www/data && \
-    find /var/www/apps.dist -type d -exec chmod 755 {} \; && \
-    find /var/www/config.dist -type d -exec chmod 755 {} \; && \
-    find /var/www/data -type d -exec chmod 755 {} \; && \
-    find /var/www/apps.dist -type f -exec chmod 644 {} \; && \
-    find /var/www/config.dist -type f -exec chmod 644 {} \; && \
-    find /var/www/data -type f -exec chmod 644 {} \;
+    find /var/www/apps.dist -type d -exec chmod 750 {} \; && \
+    find /var/www/config.dist -type d -exec chmod 750 {} \; && \
+    find /var/www/data -type d -exec chmod 750 {} \; && \
+    find /var/www/apps.dist -type f -exec chmod 640 {} \; && \
+    find /var/www/config.dist -type f -exec chmod 640 {} \; && \
+    find /var/www/data -type f -exec chmod 640 {} \;
+
+RUN rm -rf /var/www/apps.dist/updater
 
 COPY default.conf /etc/nginx/conf.d/
 
