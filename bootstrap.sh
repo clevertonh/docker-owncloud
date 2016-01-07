@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+cd /var/www/apps.dist/ && find . -maxdepth 1 -mindepth 1 -type d -exec rm -rf ../apps/{} \;
 cp -r /var/www/apps.dist/* /var/www/apps
 
 if [[ -f /var/www/config/config.php ]]; then
